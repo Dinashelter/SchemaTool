@@ -1,0 +1,136 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SchemaTool
+{
+    public class Field
+    {
+        private string _fieldTableName;
+        private string _fieldName;
+        private string _fieldType;
+        private string _fieldFormat;
+        private string _fieldInitialValue;
+        private string _fieldLabel;
+        private int _fieldPosition;
+        private int _fieldMaxWidth;
+        private int _fieldOrder;
+        private bool _fieldIsMandatory;
+        private Position _fieldPositionInFile;
+
+        public Field(string _fieldTableName, string fieldName, string fieldType, string fieldFormat, string fieldInitialValue, string fieldLabel, int fieldPosition, int fieldMaxWidth, int fieldOrder, bool fieldIsMandatory)
+        {
+            _fieldName = fieldName;
+            _fieldType = fieldType;
+            _fieldFormat = fieldFormat;
+            _fieldInitialValue = fieldInitialValue;
+            _fieldLabel = fieldLabel;
+            _fieldPosition = fieldPosition;
+            _fieldMaxWidth = fieldMaxWidth;
+            _fieldOrder = fieldOrder;
+            _fieldIsMandatory = fieldIsMandatory;
+            _fieldPositionInFile = new Position();
+        }
+
+        public Field(string _fieldTableName, string fieldName, string fieldFormat, string fieldInitialValue, string fieldLabel, bool fieldIsMandatory)
+        {
+            _fieldName = fieldName;
+            _fieldFormat = fieldFormat;
+            _fieldInitialValue = fieldInitialValue;
+            _fieldLabel = fieldLabel;
+            _fieldIsMandatory = fieldIsMandatory;
+            _fieldPositionInFile = new Position();
+        }
+
+        ~Field()
+        {
+        }
+
+        public string FieldTableName
+        {
+            get { return _fieldTableName; }
+            set { _fieldTableName = value; }
+        }
+
+        public string FieldName
+        {
+            get { return _fieldName; }
+            set { _fieldName = value; }
+        }
+
+        public string FieldType
+        {
+            get { return _fieldType; }
+            set { _fieldType = value; }
+        }
+
+        public string FieldFormat
+        {
+            get { return _fieldFormat; }
+            set { _fieldFormat = value; }
+        }
+
+        public string FieldInitialValue
+        {
+            get { return _fieldInitialValue; }
+            set { _fieldInitialValue = value; }
+        }
+
+        public string FieldLabel
+        {
+            get { return _fieldLabel; }
+            set { _fieldLabel = value; }
+        }
+
+        public int FieldPosition
+        {
+            get { return _fieldPosition; }
+            set { _fieldPosition = value; }
+        }
+
+        public int FieldMaxWidth
+        {
+            get { return _fieldMaxWidth; }
+            set { _fieldMaxWidth = value; }
+        }
+
+        public int FieldOrder
+        {
+            get { return _fieldOrder; }
+            set { _fieldOrder = value; }
+        }
+
+        public bool FieldIsMandatory
+        {
+            get { return _fieldIsMandatory; }
+            set { _fieldIsMandatory = value; }
+        }
+
+        public Position FieldPositionInFile
+        {
+            get { return _fieldPositionInFile; }
+            set { _fieldPositionInFile = value; }
+        }
+
+        public bool CheckFieldNameLength()
+        {
+            if (_fieldName.Length > Constant.FIELDMAXLENGTH)
+                return false;
+            else
+                return true;
+        }
+
+        public string GetFieldPosInfo()
+        {
+            string fieldPosInfo;
+            fieldPosInfo = _fieldName + ": row " + _fieldPositionInFile.Row;
+
+            if (_fieldPositionInFile.Column != 0)
+                fieldPosInfo += (", column " + _fieldPositionInFile.Column);
+            return fieldPosInfo;
+        }
+
+    }
+}
