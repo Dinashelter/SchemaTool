@@ -88,6 +88,37 @@ namespace SchemaTool
                 return true;
         }
 
+        public bool IsPrimIndex()
+        {
+            if (_indexName.ToLower() == Constant.PRIMINDEX)
+                return true;
+            else
+                return false;
+        }
+
+        public bool CheckPrimIndexField()
+        {
+            if (_indexFieldList.Count < 1 ||
+                _indexFieldList.Count > 1)
+                return false;
+            else
+            {
+                string indexField = _indexFieldList[0].IndexFieldName;
+                if (indexField == _indexTableName + "_ID")
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public bool IsUniqIndex()
+        {
+            if (IndexName.ToLower() == Constant.UNIQINDEX)
+                return true;
+            else
+                return false;
+        }
+
         public string GetIndexPosInfo()
         {
             string fieldPosInfo;

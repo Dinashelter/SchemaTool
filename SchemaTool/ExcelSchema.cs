@@ -17,10 +17,11 @@ namespace SchemaTool
         private Excel.Workbooks _workBooks;
         private Excel.Sheets _workSheets;
         private Excel.Worksheet _tableSheet;
-        int usedRowCnt;
-        int usedColumnCnt;
+        private Excel.Worksheet _tableRelationSheet;
+        private List<string> tableRelationList;
         #endregion
 
+        #region public method
         public ExcelSchema(Excel.Application app)
         {
             _app = app;
@@ -33,52 +34,13 @@ namespace SchemaTool
             get { return _app; }
             set { _app = value; }
         }
+        #endregion
 
-        private void InitializeExcelVariable()
-        {
-            _workBook = _app.ActiveWorkbook;
-            _workBooks = _app.Workbooks;
-            _workSheets = _app.Worksheets;
-            _tableSheet = _workSheets[1];
-            usedRowCnt = _tableSheet.UsedRange.Rows.Count;
-            usedColumnCnt = _tableSheet.UsedRange.Columns.Count;
-        }
-
+        #region protected method
         protected override void PrepareData()
         {
-            string tableName;
-            string cellValue;
-
-            for (int row = 1; row < usedRowCnt; row++)
-            {
-                cellValue = ((Range)_tableSheet.Cells[row, 1]).Text.ToString();
-                //new table
-                if (cellValue.ToLower().Contains(Constant.NEWTABLE))
-                {
-                    tableName = cellValue.Split(':')[1].Trim();
-                    Table newTable = new Table(tableName, Constant.TABLEACTIVITY_CREATE);
-                    newTable.TablePositionInFile.Row = row;
-                    newTable.TablePositionInFile.Column = Constant.TABLENAMECOLNUM;
-
-                    AddFieldToTable(newTable);
-                    AddIndexToTable(newTable);
-                    tableList.Add(newTable);
-                }
-                //modify table
-                else if (cellValue.ToLower().Contains(Constant.MODIFIEDTABLE))
-                {
-                    tableName = cellValue.Split(':')[1].Replace(Constant.CHANGESAREINRED,"").Trim();
-                    Table modifyTable = new Table(tableName, Constant.TABLEACTIVITY_MODIFY);
-                    modifyTable.TablePositionInFile.Row = row;
-                    modifyTable.TablePositionInFile.Column = Constant.TABLENAMECOLNUM;
-                    
-                    AddFieldToTable(modifyTable);
-                    AddIndexToTable(modifyTable);
-                    tableList.Add(modifyTable);
-                }
-                else
-                    continue;
-            }
+            PrepareTableData();
+            PrepareTableRelationData();
         }
 
         protected override void AddFieldToTable(Table table)
@@ -169,6 +131,114 @@ namespace SchemaTool
                 whileExecuteCnt++;
             }
         }
+
+        protected override void CheckSchemaChange()
+        {
+            base.CheckSchemaChange();
+            CheckTableRelation();
+        }
+        #endregion
+
+        #region private method 
+        private void InitializeExcelVariable()
+        {
+            _workBook = _app.ActiveWorkbook;
+            _workBooks = _app.Workbooks;
+            _workSheets = _app.Worksheets;
+            _tableSheet = _workSheets[1];
+            _tableRelationSheet = _workSheets[3];           
+        }
+
+        private void PrepareTableData()
+        {
+            string tableName;
+            string cellValue;
+            int usedRowCnt;
+
+            usedRowCnt = _tableSheet.UsedRange.Rows.Count;
+
+            for (int row = 1; row < usedRowCnt; row++)
+            {
+                cellValue = ((Range)_tableSheet.Cells[row, 1]).Text.ToString();
+                //new table
+                if (cellValue.ToLower().Contains(Constant.NEWTABLE))
+                {
+                    tableName = cellValue.Split(':')[1].Trim();
+                    Table newTable = new Table(tableName, Constant.TABLEACTIVITY_CREATE);
+                    newTable.TablePositionInFile.Row = row;
+                    newTable.TablePositionInFile.Column = Constant.TABLENAMECOLNUM;
+
+                    AddFieldToTable(newTable);
+                    AddIndexToTable(newTable);
+                    tableList.Add(newTable);
+                }
+                //modify table
+                else if (cellValue.ToLower().Contains(Constant.MODIFIEDTABLE))
+                {
+                    tableName = cellValue.Split(':')[1].Replace(Constant.CHANGESAREINRED,"").Trim();
+                    Table modifyTable = new Table(tableName, Constant.TABLEACTIVITY_MODIFY);
+                    modifyTable.TablePositionInFile.Row = row;
+                    modifyTable.TablePositionInFile.Column = Constant.TABLENAMECOLNUM;
+                    
+                    AddFieldToTable(modifyTable);
+                    AddIndexToTable(modifyTable);
+                    tableList.Add(modifyTable);
+                }
+                else
+                    continue;
+            }
+        }
+
+        private void PrepareTableRelationData()
+        {
+            int usedRowCnt;
+            string cellValue;
+            string relationName;
+            tableRelationList = new List<string>();
+
+            usedRowCnt = _tableRelationSheet.UsedRange.Rows.Count;
+            
+            for (int row = 1; row < usedRowCnt; row++)
+            {
+                cellValue = ((Range)_tableRelationSheet.Cells[row, 1]).Text.ToString();
+                //new table
+                if (cellValue.ToLower().Contains(Constant.NEWRELATION))
+                {
+                    relationName = cellValue.Split(':')[1].Trim();
+                    tableRelationList.Add(relationName);
+                }
+            }
+        }
+
+        private void CheckTableRelation()
+        {
+            string result = "";
+            string fieldPosInfo = "";
+            for (int fieldNum = 0; fieldNum < fieldList.Count; fieldNum++)
+            {
+                Field field = fieldList[fieldNum];
+                if ((field.FieldName.IndexOf(field.FieldTableName) == -1) && field.FieldName.Contains("_ID"))
+                {
+                    string tableRelation = field.FieldName.ToUpper().Replace("_ID", "") + 
+                                               "IN" + field.FieldTableName.ToUpper();
+                    bool tableRelationFound = false;
+
+                    foreach (string tableRelationInList in tableRelationList)
+                    {
+                        if (tableRelationInList == tableRelation)
+                            tableRelationFound = true;
+                    }
+
+                    if (!tableRelationFound)
+                    {
+                        fieldPosInfo = field.GetFieldPosInfo();
+                        result = fieldPosInfo + "\n" + Constant.TABLERELATIONERROR + tableRelation + "\n";
+                        errorList.Add(result);
+                    }
+                }
+            }
+        }
+        #endregion
 
         #region Close and Kill Excel Process
         public void ExitExcel()

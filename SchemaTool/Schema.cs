@@ -11,7 +11,8 @@ namespace SchemaTool
         protected List<Table> tableList;
         protected List<Field> fieldList;
         protected List<Index> indexList;
-        protected List<string> ResultList;
+        protected List<string> errorList;
+        protected List<string> warningList;
 
         #region public method
         public void CheckSchemaExcel()
@@ -29,7 +30,8 @@ namespace SchemaTool
             tableList = new List<Table>();
             fieldList = new List<Field>();
             indexList = new List<Index>();
-            ResultList = new List<string>();
+            errorList = new List<string>();
+            warningList = new List<string>();
         }      
 
         protected void ClearDataInList()
@@ -39,24 +41,16 @@ namespace SchemaTool
             indexList.Clear();
         }
 
-        protected virtual void PrepareData()
-        {
-            Table newTable = new Table();
-            AddFieldToTable(newTable);
-            AddIndexToTable(newTable);
-        }
+        protected virtual void PrepareData(){}
 
-        protected virtual void AddFieldToTable(Table table)
-        {
-        }
+        protected virtual void AddFieldToTable(Table table){}
 
-        protected virtual void AddIndexToTable(Table table)
-        {
-        }
+        protected virtual void AddIndexToTable(Table table){}
 
-        protected void CheckSchemaChange()
+        protected virtual void CheckSchemaChange()
         {
-            ResultList.Clear();
+            errorList.Clear();
+            warningList.Clear();
             CheckTable();
             CheckFieldsInTable();
             CheckIndicesInTable();
@@ -64,18 +58,28 @@ namespace SchemaTool
 
         protected void OutputResult()
         {
-            string result = "";
+            string warning = "";
+            string error = "";
             SchemaCheckResultForm schemaCheckResultForm = new SchemaCheckResultForm();
-            if (ResultList.Count == 0)
-                schemaCheckResultForm.ResultTextBox.Text = Constant.SCHEMACHECKISOK;
+            for (int warningNum = 0; warningNum < warningList.Count; warningNum++)
+            {
+                if (warningNum == 0)
+                    warning += (Constant.SCHEMACHECKWARNING + "\n");
+                warning += (warningList[warningNum] + "\n");
+            }
+            
+            if (errorList.Count == 0)
+                error = Constant.SCHEMACHECKISOK;
             else
             {
-                for (int resultNum = 0; resultNum < ResultList.Count; resultNum++)
+                for (int errorNum = 0; errorNum < errorList.Count; errorNum++)
                 {
-                    result += (ResultList[resultNum] + "\n");
-                }
-                schemaCheckResultForm.ResultTextBox.Text = result;
+                    if (errorNum == 0)
+                        error += (Constant.SCHEMACHECKERROR + "\n");
+                    error += (errorList[errorNum] + "\n");
+                }                
             }
+            schemaCheckResultForm.ResultTextBox.Text = warning + error;
             schemaCheckResultForm.ShowDialog();
         }
 
@@ -87,11 +91,14 @@ namespace SchemaTool
                 Table table = tableList[tableNum];
                 CheckTableNameLength(table);
                 if (table.TableActivity == Constant.TABLEACTIVITY_CREATE)
+                {
                     CheckTableHasIdField(table);
+                    CheckTableHasPrimIndexAndUniqIndex(table);
+                }
             }
         }
 
-        protected void CheckTableNameLength(Table table)
+        private void CheckTableNameLength(Table table)
         {
             bool tableNameIsOk = false;
             string result = "";
@@ -103,7 +110,7 @@ namespace SchemaTool
             {
                 tablePosInfo = table.GetTablePosInfo();
                 result = tablePosInfo + "\n" + Constant.TABLENAMETOOLONG + "\n";
-                ResultList.Add(result);
+                errorList.Add(result);
             }
         }
 
@@ -125,7 +132,35 @@ namespace SchemaTool
             if (!tableHasIDField)
             {
                 result = table.TableName + "\n" + Constant.TABLEDONOTHAVEIDFIELD + "\n";
-                ResultList.Add(result);
+                errorList.Add(result);
+            }
+        }
+
+        private void CheckTableHasPrimIndexAndUniqIndex(Table table)
+        {
+            bool tableHasPrimIndex = false;
+            bool tableHasUniqIndex = false;
+            string result = "";
+
+            for (int indexNum = 0; indexNum < indexList.Count; indexNum++)
+            {
+                Index index = indexList[indexNum];
+                if (!tableHasPrimIndex && (index.IndexTableName == table.TableName))
+                    tableHasPrimIndex = index.IsPrimIndex();
+                if (!tableHasUniqIndex && (index.IndexTableName == table.TableName))
+                    tableHasUniqIndex = index.IsUniqIndex();
+            }
+
+            if (!tableHasPrimIndex)
+            {
+                result = table.TableName + "\n" + Constant.TABLEDONOTHAVEPRIMINDEX + "\n";
+                errorList.Add(result);
+            }
+
+            if (!tableHasUniqIndex)
+            {
+                result = table.TableName + "\n" + Constant.TABLEDONOTHAVEUNIQINDEX + "\n";
+                warningList.Add(result);
             }
         }
         #endregion
@@ -135,9 +170,10 @@ namespace SchemaTool
         {        
             for (int fieldNum = 0; fieldNum < fieldList.Count; fieldNum++)
             {
-                CheckFieldNameLength(fieldList[fieldNum]);
-                CheckFieldStartWithTableName(fieldList[fieldNum]);
-                CheckLogicalField(fieldList[fieldNum]);
+                Field field = fieldList[fieldNum];
+                CheckFieldNameLength(field);
+                CheckFieldStartWithTableName(field);
+                CheckLogicalField(field);
             }        
         }
 
@@ -153,7 +189,7 @@ namespace SchemaTool
             {
                 fieldPosInfo = field.GetFieldPosInfo();
                 result = fieldPosInfo + "\n" + Constant.FIELDNAMETOOLONG + "\n";
-                ResultList.Add(result);
+                errorList.Add(result);
             }
         }
 
@@ -169,7 +205,7 @@ namespace SchemaTool
             {
                 fieldPosInfo = field.GetFieldPosInfo();
                 result = fieldPosInfo + "\n" + Constant.FIELDNAMESHOULDSTARTWITHTABLENAME + "\n";
-                ResultList.Add(result);
+                errorList.Add(result);
             }
         }
 
@@ -188,7 +224,7 @@ namespace SchemaTool
             {
                 fieldPosInfo = field.GetFieldPosInfo();
                 result = fieldPosInfo + "\n" + Constant.LOGICALFIELDNAMEERROR + "\n";
-                ResultList.Add(result);
+                errorList.Add(result);
             }
         }
        
@@ -199,11 +235,13 @@ namespace SchemaTool
         {
             for (int indexNum = 0; indexNum < indexList.Count; indexNum++)
             {
-                CheckIndexNameLength(indexList[indexNum]);
+                Index index = indexList[indexNum];
+                CheckIndexNameLength(index);
+                CheckPrimIndex(index);
             }
         }
 
-        protected void CheckIndexNameLength(Index index)
+        private void CheckIndexNameLength(Index index)
         {
             bool indexNameIsOk = false;
             string result = "";
@@ -215,10 +253,31 @@ namespace SchemaTool
             {
                 indexPosInfo = index.GetIndexPosInfo();
                 result = indexPosInfo + "\n" + Constant.INDEXNAMETOOLONG + "\n";
-                ResultList.Add(result);
+                errorList.Add(result);
             }
         }
+
+        private void CheckPrimIndex(Index index)
+        {
+            if (index.IndexName.ToLower() != Constant.PRIMINDEX)
+                return;
+
+            bool primIndexIsOk = false;
+            string result = "";
+            string indexPosInfo;
+
+            primIndexIsOk = index.CheckPrimIndexField();
+
+            if (!primIndexIsOk)
+            {
+                indexPosInfo = index.GetIndexPosInfo();
+                result = indexPosInfo + "\n" + Constant.PRIMINDEXERROR + "\n";
+                errorList.Add(result);
+            }
+        }
+
         #endregion Check Index
+
         #endregion
     }
 }
