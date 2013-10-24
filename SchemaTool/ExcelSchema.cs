@@ -55,7 +55,7 @@ namespace SchemaTool
                 //new table
                 if (cellValue.ToLower().Contains(Constant.NEWTABLE))
                 {
-                    tableName = cellValue.ToLower().Split(':')[1].Trim();
+                    tableName = cellValue.Split(':')[1].Trim();
                     Table newTable = new Table(tableName, Constant.TABLEACTIVITY_CREATE);
                     newTable.TablePositionInFile.Row = row;
                     newTable.TablePositionInFile.Column = Constant.TABLENAMECOLNUM;
@@ -67,7 +67,7 @@ namespace SchemaTool
                 //modify table
                 else if (cellValue.ToLower().Contains(Constant.MODIFIEDTABLE))
                 {
-                    tableName = cellValue.ToLower().Split(':')[1].Replace(Constant.CHANGESAREINRED,"").Trim();
+                    tableName = cellValue.Split(':')[1].Replace(Constant.CHANGESAREINRED,"").Trim();
                     Table modifyTable = new Table(tableName, Constant.TABLEACTIVITY_MODIFY);
                     modifyTable.TablePositionInFile.Row = row;
                     modifyTable.TablePositionInFile.Column = Constant.TABLENAMECOLNUM;

@@ -20,8 +20,13 @@ namespace SchemaTool
         private bool _fieldIsMandatory;
         private Position _fieldPositionInFile;
 
+        public Field()
+        {
+        }
+
         public Field(string _fieldTableName, string fieldName, string fieldType, string fieldFormat, string fieldInitialValue, string fieldLabel, int fieldPosition, int fieldMaxWidth, int fieldOrder, bool fieldIsMandatory)
         {
+            _fieldTableName = FieldTableName;
             _fieldName = fieldName;
             _fieldType = fieldType;
             _fieldFormat = fieldFormat;
@@ -34,8 +39,9 @@ namespace SchemaTool
             _fieldPositionInFile = new Position();
         }
 
-        public Field(string _fieldTableName, string fieldName, string fieldFormat, string fieldInitialValue, string fieldLabel, bool fieldIsMandatory)
+        public Field(string fieldTableName, string fieldName, string fieldFormat, string fieldInitialValue, string fieldLabel, bool fieldIsMandatory)
         {
+            _fieldTableName = fieldTableName;
             _fieldName = fieldName;
             _fieldFormat = fieldFormat;
             _fieldInitialValue = fieldInitialValue;
@@ -120,6 +126,45 @@ namespace SchemaTool
                 return false;
             else
                 return true;
+        }
+
+        public bool CheckFieldStartWithTableName()
+        {
+            if (_fieldName.Contains("_ID"))
+                return true;
+            else
+            {
+                if (_fieldName.IndexOf(_fieldTableName) != 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public bool CheckLogicalFieldIsManditory()
+        {
+            if (_fieldFormat.ToLower() == Constant.DOMAIN_BOOLEAN ||
+                _fieldFormat.ToLower() == Constant.FORMAT_BOOLEAN)
+            {
+                if (!_fieldIsMandatory)
+                    return false;
+                else
+                    return true;
+            }
+            else return true;
+        }
+
+        public bool CheckLogicalFieldHasKeyWordIs()
+        {
+            if (_fieldFormat.ToLower() == Constant.DOMAIN_BOOLEAN ||
+                _fieldFormat.ToLower() == Constant.FORMAT_BOOLEAN)
+            {
+                if (!_fieldName.ToLower().Contains("is"))
+                    return false;
+                else
+                    return true;
+            }
+            else return true;
         }
 
         public string GetFieldPosInfo()

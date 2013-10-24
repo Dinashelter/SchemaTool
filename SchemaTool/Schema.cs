@@ -13,6 +13,7 @@ namespace SchemaTool
         protected List<Index> indexList;
         protected List<string> ResultList;
 
+        #region public method
         public void CheckSchemaExcel()
         {
             ClearDataInList();
@@ -20,7 +21,9 @@ namespace SchemaTool
             CheckSchemaChange();
             OutputResult();
         }
+        #endregion
 
+        #region protected method
         protected void InitializeGlobalVariables()
         {
             tableList = new List<Table>();
@@ -81,13 +84,16 @@ namespace SchemaTool
         {
             for (int tableNum = 0; tableNum < tableList.Count; tableNum++)
             {
-                CheckTableNameLength(tableList[tableNum]);
+                Table table = tableList[tableNum];
+                CheckTableNameLength(table);
+                if (table.TableActivity == Constant.TABLEACTIVITY_CREATE)
+                    CheckTableHasIdField(table);
             }
         }
 
         protected void CheckTableNameLength(Table table)
         {
-            bool tableNameIsOk;
+            bool tableNameIsOk = false;
             string result = "";
             string tablePosInfo;
 
@@ -100,18 +106,42 @@ namespace SchemaTool
                 ResultList.Add(result);
             }
         }
+
+        private void CheckTableHasIdField(Table table)
+        {
+            bool tableHasIDField = false;
+            string result = "";
+            for (int fieldNum = 0; fieldNum < fieldList.Count; fieldNum++)
+            {
+                Field field = fieldList[fieldNum];
+                if (field.FieldTableName == table.TableName &&
+                    field.FieldName == table.TableName + "_ID")
+                {
+                    tableHasIDField = true;
+                    break;
+                }
+            }
+
+            if (!tableHasIDField)
+            {
+                result = table.TableName + "\n" + Constant.TABLEDONOTHAVEIDFIELD + "\n";
+                ResultList.Add(result);
+            }
+        }
         #endregion
 
         #region Check fields
         protected void CheckFieldsInTable()
-        {
+        {        
             for (int fieldNum = 0; fieldNum < fieldList.Count; fieldNum++)
             {
                 CheckFieldNameLength(fieldList[fieldNum]);
-            }
+                CheckFieldStartWithTableName(fieldList[fieldNum]);
+                CheckLogicalField(fieldList[fieldNum]);
+            }        
         }
 
-        protected void CheckFieldNameLength(Field field)
+        private void CheckFieldNameLength(Field field)
         {
             bool fieldNameIsOk;
             string result = "";
@@ -126,6 +156,42 @@ namespace SchemaTool
                 ResultList.Add(result);
             }
         }
+
+        private void CheckFieldStartWithTableName(Field field)
+        {
+            bool fieldNameIsOk = false;
+            string result = "";
+            string fieldPosInfo;
+
+            fieldNameIsOk = field.CheckFieldStartWithTableName();
+
+            if (!fieldNameIsOk)
+            {
+                fieldPosInfo = field.GetFieldPosInfo();
+                result = fieldPosInfo + "\n" + Constant.FIELDNAMESHOULDSTARTWITHTABLENAME + "\n";
+                ResultList.Add(result);
+            }
+        }
+
+        private void CheckLogicalField(Field field)
+        {
+            bool logicalFieldNameIsOk = false;
+            string result = "";
+            string fieldPosInfo;
+
+            logicalFieldNameIsOk = field.CheckLogicalFieldIsManditory();
+
+            if (logicalFieldNameIsOk)
+                logicalFieldNameIsOk = field.CheckLogicalFieldHasKeyWordIs();
+
+            if (!logicalFieldNameIsOk)
+            {
+                fieldPosInfo = field.GetFieldPosInfo();
+                result = fieldPosInfo + "\n" + Constant.LOGICALFIELDNAMEERROR + "\n";
+                ResultList.Add(result);
+            }
+        }
+       
         #endregion
 
         #region Check Index
@@ -139,7 +205,7 @@ namespace SchemaTool
 
         protected void CheckIndexNameLength(Index index)
         {
-            bool indexNameIsOk;
+            bool indexNameIsOk = false;
             string result = "";
             string indexPosInfo;
 
@@ -153,5 +219,6 @@ namespace SchemaTool
             }
         }
         #endregion Check Index
+        #endregion
     }
 }
