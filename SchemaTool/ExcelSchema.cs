@@ -203,7 +203,7 @@ namespace SchemaTool
                 cellValue = ((Range)_tableRelationSheet.Cells[row, 1]).Text.ToString();
                 //new table
                 if (cellValue.ToLower().Contains(Constant.NEWRELATION))
-                {
+                {                   
                     relationName = cellValue.Split(':')[1].Trim();
                     tableRelationList.Add(relationName);
                 }

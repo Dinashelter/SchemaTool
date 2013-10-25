@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace SchemaTool
 {
     public class Constant
-    {     
-        public const string SCHEMACHECKWARNING = "-------------------------------------------------Schema Check Warning---------------------------------------------";
-        public const string SCHEMACHECKERROR =   "--------------------------------------------------Schema Check Error--------------------------------------------------";
+    {
+        public const string SCHEMATOOL = "Schema Tool";
+        public const string SCHEMAFORMATISNOTCORRECT = "Schema format is not correct!";
+        public const string SCHEMACHECKWARNING = "----------------------------------Schema Check Warning------------------------------";
+        public const string SCHEMACHECKERROR =   "----------------------------------Schema Check Error-----------------------------------";
 
         #region Schema Ok
         public const string SCHEMACHECKISOK = "Schema check is OK!";

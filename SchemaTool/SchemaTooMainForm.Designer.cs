@@ -36,6 +36,9 @@
             this.functionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkSchemaExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.axWebBrowser = new AxSHDocVw.AxWebBrowser();
+            this.checkSchemadfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dfSchemaTextBox = new System.Windows.Forms.RichTextBox();
+            this.opendfFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +55,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openExcelFileToolStripMenuItem,
+            this.opendfFileToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
@@ -71,7 +75,8 @@
             // functionToolStripMenuItem
             // 
             this.functionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkSchemaExcelToolStripMenuItem});
+            this.checkSchemaExcelToolStripMenuItem,
+            this.checkSchemadfToolStripMenuItem});
             this.functionToolStripMenuItem.Name = "functionToolStripMenuItem";
             resources.ApplyResources(this.functionToolStripMenuItem, "functionToolStripMenuItem");
             // 
@@ -87,15 +92,32 @@
             this.axWebBrowser.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser.OcxState")));
             this.axWebBrowser.NavigateComplete2 += new AxSHDocVw.DWebBrowserEvents2_NavigateComplete2EventHandler(this.axWebBrowser_NavigateComplete2);
             // 
+            // checkSchemadfToolStripMenuItem
+            // 
+            this.checkSchemadfToolStripMenuItem.Name = "checkSchemadfToolStripMenuItem";
+            resources.ApplyResources(this.checkSchemadfToolStripMenuItem, "checkSchemadfToolStripMenuItem");
+            this.checkSchemadfToolStripMenuItem.Click += new System.EventHandler(this.checkSchemadfToolStripMenuItem_Click);
+            // 
+            // dfSchemaTextBox
+            // 
+            resources.ApplyResources(this.dfSchemaTextBox, "dfSchemaTextBox");
+            this.dfSchemaTextBox.Name = "dfSchemaTextBox";
+            // 
+            // opendfFileToolStripMenuItem
+            // 
+            this.opendfFileToolStripMenuItem.Name = "opendfFileToolStripMenuItem";
+            resources.ApplyResources(this.opendfFileToolStripMenuItem, "opendfFileToolStripMenuItem");
+            this.opendfFileToolStripMenuItem.Click += new System.EventHandler(this.opendfFileToolStripMenuItem_Click);
+            // 
             // SchemaToolMainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dfSchemaTextBox);
             this.Controls.Add(this.axWebBrowser);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SchemaToolMainForm";
-            this.Text = "Schema Tool";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser)).EndInit();
@@ -113,6 +135,9 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private AxSHDocVw.AxWebBrowser axWebBrowser;
         private System.Windows.Forms.ToolStripMenuItem checkSchemaExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkSchemadfToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox dfSchemaTextBox;
+        private System.Windows.Forms.ToolStripMenuItem opendfFileToolStripMenuItem;
     }
 }
 

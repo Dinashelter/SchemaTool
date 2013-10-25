@@ -34,8 +34,11 @@
             // ResultTextBox
             // 
             this.ResultTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ResultTextBox.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResultTextBox.Location = new System.Drawing.Point(0, 0);
             this.ResultTextBox.Name = "ResultTextBox";
+            this.ResultTextBox.ReadOnly = true;
+            this.ResultTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
             this.ResultTextBox.Size = new System.Drawing.Size(410, 395);
             this.ResultTextBox.TabIndex = 0;
             this.ResultTextBox.Text = "";

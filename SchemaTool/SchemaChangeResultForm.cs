@@ -15,6 +15,13 @@ namespace SchemaTool
         public SchemaCheckResultForm()
         {
             InitializeComponent();
+            SetControls();
+        }
+
+        private void SetControls()
+        {
+            this.Width = 600;
+            this.Height = 400;
         }
     }
 }
