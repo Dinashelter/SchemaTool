@@ -43,7 +43,7 @@ namespace SchemaTool
             PrepareTableRelationData();
         }
 
-        protected override void AddFieldToTable(Table table)
+        private void AddFieldToTable(Table table)
         {
             int targetRow = table.TablePositionInFile.Row;
             string cellValue = "";
@@ -79,7 +79,7 @@ namespace SchemaTool
             }
         }
 
-        protected override void AddIndexToTable(Table table)
+        private void AddIndexToTable(Table table)
         {
             int targetRow = table.TablePositionInFile.Row;
             string cellValue = "";

@@ -16,6 +16,10 @@ namespace SchemaTool
         private List<IndexField> _indexFieldList;
         private Position _indexPositionInFile;
 
+        public Index()
+        {
+        }
+
         public Index(string indexTableName, string indexName, string indexArea, bool indexIsUnque, bool indexIsPrimary, List<IndexField> indexFieldList)
         {
             _indexTableName = indexTableName;

@@ -21,7 +21,14 @@ namespace SchemaTool
         private Position _fieldPositionInFile;
 
         public Field()
+        { 
+        }
+
+        public Field(string fieldTableName, string fieldName)
         {
+            _fieldName = fieldName;
+            _fieldTableName = fieldTableName;
+            _fieldPositionInFile = new Position();
         }
 
         public Field(string _fieldTableName, string fieldName, string fieldType, string fieldFormat, string fieldInitialValue, string fieldLabel, int fieldPosition, int fieldMaxWidth, int fieldOrder, bool fieldIsMandatory)

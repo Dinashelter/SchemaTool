@@ -15,9 +15,12 @@ namespace SchemaTool
         private string _tableDumpName;
         private string _tableActivity;
         private Position _tablePositionInFile;
+        private bool _tableHasCustomField;
+        private bool _tableHasLastModifiedField;
+        private bool _tableHasQADField;
 
         public Table()
-        {
+        { 
         }
 
         public Table(string tableName, string tableActivity)
@@ -85,6 +88,24 @@ namespace SchemaTool
         {
             get { return _tablePositionInFile; }
             set { _tablePositionInFile = value; }
+        }
+
+        public bool TableHasCustomField
+        {
+            get { return _tableHasCustomField; }
+            set { _tableHasCustomField = value; }
+        }
+
+        public bool TableHasLastModifiedField
+        {
+            get { return _tableHasLastModifiedField; }
+            set { _tableHasLastModifiedField = value; }
+        }
+
+        public bool TableHasQADField
+        {
+            get { return _tableHasQADField; }
+            set { _tableHasQADField = value; }
         }
 
         public bool CheckTableNameLength()

@@ -19,6 +19,7 @@ namespace SchemaTool
     {
         #region global variables
         private ExcelSchema excelSchema;
+        private DfSchema dfSchema;
 
         #endregion
 
@@ -54,6 +55,7 @@ namespace SchemaTool
 
             this.axWebBrowser.Visible = true;
             this.dfSchemaTextBox.Visible = false;
+            this.checkSchemadfToolStripMenuItem.Enabled = false;
             //Show excel in a special browse
             axWebBrowser.Navigate(filePath);
         }
@@ -83,8 +85,56 @@ namespace SchemaTool
 
         private void checkSchemaExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            excelSchema.CheckSchemaExcel();
+            excelSchema.CheckSchema();
         }
+
+        private void checkSchemadfToolStripMenuItem_Click(object sender, EventArgs e)
+        {          
+            dfSchema.CheckSchema();
+        }
+
+        private void opendfFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "df Files|*.df";
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            this.dfSchemaTextBox.Visible = true;
+            this.axWebBrowser.Visible = false;
+            this.checkSchemaExcelToolStripMenuItem.Enabled = false;
+
+            if (excelSchema != null)
+                excelSchema.ExitExcel();
+
+            string dfSchemaText;
+            StreamReader streamReader = new StreamReader(openFileDialog.FileName, false);
+            dfSchemaText = streamReader.ReadToEnd().ToString();
+            streamReader.Close();
+            this.dfSchemaTextBox.Text = dfSchemaText;
+            dfSchema = new DfSchema(this.dfSchemaTextBox.Text.ToString(), openFileDialog.FileName);
+
+            this.checkSchemadfToolStripMenuItem.Enabled = true;
+        }
+
+        private void savedfFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StreamWriter streamWriter = new StreamWriter(dfSchema.DfSchemaTextFilePath, false);
+            streamWriter.Write(this.dfSchemaTextBox.Text);
+            streamWriter.Close();
+        }
+
+        private void saveAsdfFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "df Files|*.df";
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName, false);
+            streamWriter.Write(this.dfSchemaTextBox.Text);
+            streamWriter.Close();
+        }      
         #endregion
 
         #region Other Method        
@@ -116,28 +166,6 @@ namespace SchemaTool
         }
         #endregion
 
-        private void checkSchemadfToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void opendfFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "df Files|*.df";
-            if (openFileDialog.ShowDialog() != DialogResult.OK)
-                return;
-
-            this.dfSchemaTextBox.Visible = true;
-            this.axWebBrowser.Visible = false;
-
-            string dfSchemaText;
-            StreamReader streamReader = new StreamReader(openFileDialog.FileName, false);
-            dfSchemaText = streamReader.ReadToEnd().ToString();
-            streamReader.Close();
-            this.dfSchemaTextBox.Text = dfSchemaText; 
-
-            this.checkSchemadfToolStripMenuItem.Enabled = true;
-        }      
+       
     }
 }

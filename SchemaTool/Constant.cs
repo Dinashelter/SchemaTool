@@ -12,6 +12,7 @@ namespace SchemaTool
         public const string SCHEMAFORMATISNOTCORRECT = "Schema format is not correct!";
         public const string SCHEMACHECKWARNING = "----------------------------------Schema Check Warning------------------------------";
         public const string SCHEMACHECKERROR =   "----------------------------------Schema Check Error-----------------------------------";
+        public const string ADD = "add";
 
         #region Schema Ok
         public const string SCHEMACHECKISOK = "Schema check is OK!";
@@ -34,6 +35,7 @@ namespace SchemaTool
         #endregion
 
         #region Table 
+        public const string TABLE = "table";
         public const int TABLEMAXLENGTH = 14;
         public const int TABLEINDEXMAXLENGTH = 28;
         public const int TABLENAMECOLNUM = 1;
@@ -43,6 +45,10 @@ namespace SchemaTool
         public const string TABLEACTIVITY_MODIFY = "modify";
         public const string CHANGESAREINRED = "(changes are in RED)";
         public const string TABLEAREA_FIN = "FIN";
+        public const string TABLEAREA = "area";
+        public const string TABLEDESCRIPTION = "description";
+        public const string TABLEFROZEN = "frozen";
+        public const string TABLEDUMPNAME = "dump-name";
         #endregion
 
         #region Field
@@ -53,14 +59,29 @@ namespace SchemaTool
         public const int FIELDINITIALCOLNUM = 7;
         public const int FIELDLABELCOLNUM = 8;
         public const string FIELD = "field";
+        public const string FIELDFORMAT = "format";
+        public const string FIELDINITIAL = "initial";
+        public const string FIELDLABEL = "label";
+        public const string FIELDPOSITION = "position";
+        public const string FIELDMAXWIDTH = "max-width";
+        public const string FIELDORDER = "order";
+        public const string FIELDMANDATORY = "mandatory";
+        public const string CUSTOMFIELD = "custom";
+        public const string LASTMODIFIEDFIELD = "lastmodified";
+        public const string QADFIELD = "qad";
         #endregion
 
         #region Index
+        public const string INDEX = "index";
         public const int INDEXNAMECOLNUM = 3;
         public const string PRIMINDEX = "prim";
         public const string UNIQINDEX = "uniqidx";
         public const string INDICES = "indices";
         public const string INDEXAREA_FIN = "FIN_IDX";
+        public const string INDEXAREA = "area";
+        public const string INDEXUNIQUE = "unique";
+        public const string INDEXFIELD = "index-field";
+        public const string INDEXASCENDING = "ascending";
         #endregion
 
         #region Domain

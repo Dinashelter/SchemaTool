@@ -15,7 +15,7 @@ namespace SchemaTool
         protected List<string> warningList;
 
         #region public method
-        public void CheckSchemaExcel()
+        public void CheckSchema()
         {
             ClearDataInList();
             PrepareData();
@@ -42,11 +42,7 @@ namespace SchemaTool
         }
 
         protected virtual void PrepareData(){}
-
-        protected virtual void AddFieldToTable(Table table){}
-
-        protected virtual void AddIndexToTable(Table table){}
-
+      
         protected virtual void CheckSchemaChange()
         {
             errorList.Clear();

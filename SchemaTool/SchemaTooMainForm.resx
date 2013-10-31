@@ -121,6 +121,48 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="openExcelFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 22</value>
+  </data>
+  <data name="openExcelFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open Excel File...</value>
+  </data>
+  <data name="opendfFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 22</value>
+  </data>
+  <data name="opendfFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open .df File...</value>
+  </data>
+  <data name="savedfFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 22</value>
+  </data>
+  <data name="savedfFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save .df File</value>
+  </data>
+  <data name="saveAsdfFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 22</value>
+  </data>
+  <data name="saveAsdfFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save .df File As...</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="functionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="functionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Function</value>
+  </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -146,35 +188,17 @@
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="openExcelFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
-  </data>
-  <data name="openExcelFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Open Excel File</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="functionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 20</value>
-  </data>
-  <data name="functionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Function</value>
-  </data>
   <data name="checkSchemaExcelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="checkSchemaExcelToolStripMenuItem.Text" xml:space="preserve">
     <value>Check Schema Excel</value>
+  </data>
+  <data name="checkSchemadfToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="checkSchemadfToolStripMenuItem.Text" xml:space="preserve">
+    <value>Check Schema .df</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="axWebBrowser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -214,12 +238,6 @@
   <data name="&gt;&gt;axWebBrowser.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="checkSchemadfToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="checkSchemadfToolStripMenuItem.Text" xml:space="preserve">
-    <value>Check Schema .df</value>
-  </data>
   <data name="dfSchemaTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -250,12 +268,6 @@
   <data name="&gt;&gt;dfSchemaTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="opendfFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
-  </data>
-  <data name="opendfFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Open .df File</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -278,6 +290,12 @@
     <value>openExcelFileToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;openExcelFileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;opendfFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>opendfFileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;opendfFileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
@@ -304,10 +322,16 @@
   <data name="&gt;&gt;checkSchemadfToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;opendfFileToolStripMenuItem.Name" xml:space="preserve">
-    <value>opendfFileToolStripMenuItem</value>
+  <data name="&gt;&gt;savedfFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>savedfFileToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;opendfFileToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;savedfFileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveAsdfFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>saveAsdfFileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;saveAsdfFileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
