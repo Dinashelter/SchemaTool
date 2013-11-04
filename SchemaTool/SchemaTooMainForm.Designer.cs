@@ -33,14 +33,14 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opendfFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.savedfFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsdfFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkSchemaExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkSchemadfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.axWebBrowser = new AxSHDocVw.AxWebBrowser();
             this.dfSchemaTextBox = new System.Windows.Forms.RichTextBox();
-            this.savedfFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsdfFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +75,18 @@
             this.opendfFileToolStripMenuItem.Name = "opendfFileToolStripMenuItem";
             resources.ApplyResources(this.opendfFileToolStripMenuItem, "opendfFileToolStripMenuItem");
             this.opendfFileToolStripMenuItem.Click += new System.EventHandler(this.opendfFileToolStripMenuItem_Click);
+            // 
+            // savedfFileToolStripMenuItem
+            // 
+            this.savedfFileToolStripMenuItem.Name = "savedfFileToolStripMenuItem";
+            resources.ApplyResources(this.savedfFileToolStripMenuItem, "savedfFileToolStripMenuItem");
+            this.savedfFileToolStripMenuItem.Click += new System.EventHandler(this.savedfFileToolStripMenuItem_Click);
+            // 
+            // saveAsdfFileToolStripMenuItem
+            // 
+            this.saveAsdfFileToolStripMenuItem.Name = "saveAsdfFileToolStripMenuItem";
+            resources.ApplyResources(this.saveAsdfFileToolStripMenuItem, "saveAsdfFileToolStripMenuItem");
+            this.saveAsdfFileToolStripMenuItem.Click += new System.EventHandler(this.saveAsdfFileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -112,18 +124,6 @@
             // 
             resources.ApplyResources(this.dfSchemaTextBox, "dfSchemaTextBox");
             this.dfSchemaTextBox.Name = "dfSchemaTextBox";
-            // 
-            // savedfFileToolStripMenuItem
-            // 
-            this.savedfFileToolStripMenuItem.Name = "savedfFileToolStripMenuItem";
-            resources.ApplyResources(this.savedfFileToolStripMenuItem, "savedfFileToolStripMenuItem");
-            this.savedfFileToolStripMenuItem.Click += new System.EventHandler(this.savedfFileToolStripMenuItem_Click);
-            // 
-            // saveAsdfFileToolStripMenuItem
-            // 
-            this.saveAsdfFileToolStripMenuItem.Name = "saveAsdfFileToolStripMenuItem";
-            resources.ApplyResources(this.saveAsdfFileToolStripMenuItem, "saveAsdfFileToolStripMenuItem");
-            this.saveAsdfFileToolStripMenuItem.Click += new System.EventHandler(this.saveAsdfFileToolStripMenuItem_Click);
             // 
             // SchemaToolMainForm
             // 

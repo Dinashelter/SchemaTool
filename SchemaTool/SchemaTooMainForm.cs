@@ -134,7 +134,8 @@ namespace SchemaTool
             StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName, false);
             streamWriter.Write(this.dfSchemaTextBox.Text);
             streamWriter.Close();
-        }      
+        }
+
         #endregion
 
         #region Other Method        
@@ -150,8 +151,7 @@ namespace SchemaTool
             foreach (Process winProc in Process.GetProcesses())
             {
 
-                //use equals for the task in case we kill
-                //a wrong process
+                //use equals for the task in case we kill a wrong process
                 if (winProc.ProcessName.ToLower().Equals("excel"))
                 {
                     winProc.Kill();
@@ -164,8 +164,8 @@ namespace SchemaTool
             this.Text = Constant.SCHEMATOOL;
             this.dfSchemaTextBox.Visible = false;
         }
-        #endregion
 
+        #endregion
        
     }
 }

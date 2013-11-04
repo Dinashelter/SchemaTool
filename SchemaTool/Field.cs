@@ -174,6 +174,12 @@ namespace SchemaTool
             else return true;
         }
 
+        public bool CheckFieldTypeMatchFieldFormat()
+        {
+
+            return true;
+        }
+
         public string GetFieldPosInfo()
         {
             string fieldPosInfo;

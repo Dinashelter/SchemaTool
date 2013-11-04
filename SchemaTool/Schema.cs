@@ -170,6 +170,7 @@ namespace SchemaTool
                 CheckFieldNameLength(field);
                 CheckFieldStartWithTableName(field);
                 CheckLogicalField(field);
+                CheckFieldTypeMatchFieldFormat(field);
             }        
         }
 
@@ -220,6 +221,22 @@ namespace SchemaTool
             {
                 fieldPosInfo = field.GetFieldPosInfo();
                 result = fieldPosInfo + "\n" + Constant.LOGICALFIELDNAMEERROR + "\n";
+                errorList.Add(result);
+            }
+        }
+
+        private void CheckFieldTypeMatchFieldFormat(Field field)
+        {
+            bool fieldTypeMatchFieldFormat = false;
+            string result = "";
+            string fieldPosInfo;
+
+            fieldTypeMatchFieldFormat = field.FieldTypeMatchFieldFormat();
+
+            if (!fieldTypeMatchFieldFormat)
+            {
+                fieldPosInfo = field.GetFieldPosInfo();
+                result = fieldPosInfo + "\n" + Constant.FIELDTYPEMATCHFIELDFORMAT + "\n";
                 errorList.Add(result);
             }
         }

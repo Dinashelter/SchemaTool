@@ -28,6 +28,7 @@ namespace SchemaTool
         public const string INDEXNAMETOOLONG = "Index name is too Long; The index-name cannot be longer than 28 characters minus the length of the table name to which they belong. (STD-0286).";
         public const string PRIMINDEXERROR = "Every table will hold a field that is called \"<table-name>_ID\" and the primary index on this table will just hold this single field. (STD-0327) (STD-0286) (STD-0014)";
         public const string TABLERELATIONERROR = "There should be a table relation named ";
+        public const string FIELDTYPEMATCHFIELDFORMAT = "Field type doesn't match field format";
         #endregion
 
         #region Schema Warning
