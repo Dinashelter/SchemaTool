@@ -97,6 +97,8 @@ namespace SchemaTool
         public const string FIELDTYPE_INTEGER = "integer";
         public const string FIELDTYPE_CHARACTER = "character";
         public const string FIELDTYPE_LOGICAL = "logical";
+        public const string FIELDTYPE_DATE = "date";
+        public const string FIELDTYPE_DECIMAL = "decimal";
         #endregion
 
         #region Table Relation

@@ -15,4 +15,5 @@ D:\PersonalProject\SchemaTool\SchemaTool\obj\Debug\en\SchemaTool.resources.dll
 D:\PersonalProject\SchemaTool\SchemaTool\obj\Debug\SchemaTool.exe
 D:\PersonalProject\SchemaTool\SchemaTool\obj\Debug\SchemaTool.pdb
 D:\PersonalProject\SchemaTool\SchemaTool\obj\Debug\SchemaTool.SchemaCheckResultForm.resources
+D:\PersonalProject\SchemaTool\SchemaTool\obj\Debug\Interop.AXWEBINSTALLERLib.dll
 D:\PersonalProject\SchemaTool\SchemaTool\obj\Debug\SchemaTool.csprojResolveAssemblyReference.cache

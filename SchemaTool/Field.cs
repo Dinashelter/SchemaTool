@@ -176,8 +176,63 @@ namespace SchemaTool
 
         public bool CheckFieldTypeMatchFieldFormat()
         {
-
-            return true;
+            bool IsMatch = false;
+            //There is no field type in excel schema
+            if (_fieldType == "")
+                IsMatch = true;
+            else
+            {
+                switch (_fieldType.ToLower())
+                {
+                    case Constant.FIELDTYPE_INTEGER:
+                        {
+                            if (_fieldFormat.Contains("9") &&
+                                !_fieldFormat.Contains(".") &&
+                                !_fieldFormat.Contains("/") &&
+                                !_fieldFormat.Contains("x"))
+                                IsMatch = true;
+                            break;
+                        }
+                    case Constant.FIELDTYPE_CHARACTER:
+                        {
+                            if (_fieldFormat.Contains("x") &&
+                                _fieldFormat.Contains("(") &&
+                                _fieldFormat.Contains(")"))
+                                IsMatch = true;
+                            break;
+                        }
+                    case Constant.FIELDTYPE_LOGICAL:
+                        {
+                            if (_fieldFormat == Constant.FORMAT_BOOLEAN)
+                                IsMatch = true;
+                            break;
+                        }
+                    case Constant.FIELDTYPE_DATE:
+                        {
+                            if (_fieldFormat.Contains("9") &&
+                                !_fieldFormat.Contains(".") &&
+                                _fieldFormat.Contains("/") &&
+                                !_fieldFormat.Contains("x"))
+                                IsMatch = true;
+                            break;
+                        }
+                    case Constant.FIELDTYPE_DECIMAL:
+                        {
+                            if (_fieldFormat.Contains("9") &&
+                                _fieldFormat.Contains(".") &&
+                                !_fieldFormat.Contains("/") &&
+                                !_fieldFormat.Contains("x"))
+                                IsMatch = true;
+                            break;
+                        }
+                    default:
+                        {
+                            IsMatch = false;
+                            break;
+                        }
+                }
+            }
+            return IsMatch;
         }
 
         public string GetFieldPosInfo()

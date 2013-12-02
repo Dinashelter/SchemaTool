@@ -39,8 +39,8 @@
             this.functionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkSchemaExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkSchemadfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.axWebBrowser = new AxSHDocVw.AxWebBrowser();
             this.dfSchemaTextBox = new System.Windows.Forms.RichTextBox();
+            this.axWebBrowser = new AxSHDocVw.AxWebBrowser();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser)).BeginInit();
             this.SuspendLayout();
@@ -114,16 +114,16 @@
             resources.ApplyResources(this.checkSchemadfToolStripMenuItem, "checkSchemadfToolStripMenuItem");
             this.checkSchemadfToolStripMenuItem.Click += new System.EventHandler(this.checkSchemadfToolStripMenuItem_Click);
             // 
+            // dfSchemaTextBox
+            // 
+            resources.ApplyResources(this.dfSchemaTextBox, "dfSchemaTextBox");
+            this.dfSchemaTextBox.Name = "dfSchemaTextBox";
+            // 
             // axWebBrowser
             // 
             resources.ApplyResources(this.axWebBrowser, "axWebBrowser");
             this.axWebBrowser.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser.OcxState")));
             this.axWebBrowser.NavigateComplete2 += new AxSHDocVw.DWebBrowserEvents2_NavigateComplete2EventHandler(this.axWebBrowser_NavigateComplete2);
-            // 
-            // dfSchemaTextBox
-            // 
-            resources.ApplyResources(this.dfSchemaTextBox, "dfSchemaTextBox");
-            this.dfSchemaTextBox.Name = "dfSchemaTextBox";
             // 
             // SchemaToolMainForm
             // 

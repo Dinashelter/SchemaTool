@@ -231,7 +231,7 @@ namespace SchemaTool
             string result = "";
             string fieldPosInfo;
 
-            fieldTypeMatchFieldFormat = field.FieldTypeMatchFieldFormat();
+            fieldTypeMatchFieldFormat = field.CheckFieldTypeMatchFieldFormat();
 
             if (!fieldTypeMatchFieldFormat)
             {

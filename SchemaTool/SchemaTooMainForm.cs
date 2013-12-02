@@ -54,9 +54,13 @@ namespace SchemaTool
             filePath = openFileDialog.FileName;
 
             this.axWebBrowser.Visible = true;
+            this.checkSchemaExcelToolStripMenuItem.Enabled = true;
             this.dfSchemaTextBox.Visible = false;
             this.checkSchemadfToolStripMenuItem.Enabled = false;
+            this.savedfFileToolStripMenuItem.Enabled = false;
+            this.saveAsdfFileToolStripMenuItem.Enabled = false;
             //Show excel in a special browse
+            Object refmissing = System.Reflection.Missing.Value;
             axWebBrowser.Navigate(filePath);
         }
 
@@ -89,7 +93,8 @@ namespace SchemaTool
         }
 
         private void checkSchemadfToolStripMenuItem_Click(object sender, EventArgs e)
-        {          
+        {
+            dfSchema.DfSchemaText = this.dfSchemaTextBox.Text;
             dfSchema.CheckSchema();
         }
 
@@ -103,6 +108,8 @@ namespace SchemaTool
             this.dfSchemaTextBox.Visible = true;
             this.axWebBrowser.Visible = false;
             this.checkSchemaExcelToolStripMenuItem.Enabled = false;
+            this.savedfFileToolStripMenuItem.Enabled = true;
+            this.saveAsdfFileToolStripMenuItem.Enabled = true;
 
             if (excelSchema != null)
                 excelSchema.ExitExcel();
@@ -163,6 +170,8 @@ namespace SchemaTool
         {
             this.Text = Constant.SCHEMATOOL;
             this.dfSchemaTextBox.Visible = false;
+            this.savedfFileToolStripMenuItem.Enabled = false;
+            this.saveAsdfFileToolStripMenuItem.Enabled = false;
         }
 
         #endregion

@@ -117,7 +117,7 @@ namespace SchemaTool
 
                     string indexArea = cellValue.Split(':')[1].Trim();
 
-                    for (int indexFieldCnt = 1; indexFieldCnt < indexArea.Split('+').Length - 1; indexFieldCnt++)
+                    for (int indexFieldCnt = 1; indexFieldCnt <= indexArea.Split('+').Length - 1; indexFieldCnt++)
                     {
                         IndexField newIndexField = new IndexField(indexArea.Split('+')[indexFieldCnt].ToString().Trim(), true);
                         newIndex.IndexFieldList.Add(newIndexField);
