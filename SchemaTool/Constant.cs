@@ -13,6 +13,7 @@ namespace SchemaTool
         public const string SCHEMACHECKWARNING = "----------------------------------Schema Check Warning------------------------------";
         public const string SCHEMACHECKERROR =   "----------------------------------Schema Check Error-----------------------------------";
         public const string ADD = "add";
+        public const string QUESTION = "Question";
 
         #region Schema Ok
         public const string SCHEMACHECKISOK = "Schema check is OK!";
@@ -29,6 +30,7 @@ namespace SchemaTool
         public const string PRIMINDEXERROR = "Every table will hold a field that is called \"<table-name>_ID\" and the primary index on this table will just hold this single field. (STD-0327) (STD-0286) (STD-0014)";
         public const string TABLERELATIONERROR = "There should be a table relation named ";
         public const string FIELDTYPEMATCHFIELDFORMAT = "Field type doesn't match field format";
+        public const string SCHEMAERROR = "df Schema has some errors, Do you want to continue convertion?";
         #endregion
 
         #region Schema Warning
@@ -40,8 +42,8 @@ namespace SchemaTool
         public const int TABLEMAXLENGTH = 14;
         public const int TABLEINDEXMAXLENGTH = 28;
         public const int TABLENAMECOLNUM = 1;
-        public const string NEWTABLE = "new table";
-        public const string MODIFIEDTABLE = "modified table";
+        public const string NEWTABLE = "New Table";
+        public const string MODIFIEDTABLE = "Modified Table";
         public const string TABLEACTIVITY_CREATE = "create";
         public const string TABLEACTIVITY_MODIFY = "modify";
         public const string CHANGESAREINRED = "(changes are in RED)";
@@ -55,11 +57,12 @@ namespace SchemaTool
         #region Field
         public const int FIELDMAXLENGTH = 30;
         public const int FIELDNAMECOLNUM = 3;
-        public const int FIELDFORMATCOLNUM = 5;
+        public const int FIELDNAMELENGTHCOLUMN = 4;
+        public const int FIELDFORMATCOLUMN = 5;
         public const int FIELDMANDITORYCOLNUM = 6;
         public const int FIELDINITIALCOLNUM = 7;
         public const int FIELDLABELCOLNUM = 8;
-        public const string FIELD = "field";
+        public const string FIELD = "Field";
         public const string FIELDFORMAT = "format";
         public const string FIELDINITIAL = "initial";
         public const string FIELDLABEL = "label";
@@ -77,7 +80,7 @@ namespace SchemaTool
         public const int INDEXNAMECOLNUM = 3;
         public const string PRIMINDEX = "prim";
         public const string UNIQINDEX = "uniqidx";
-        public const string INDICES = "indices";
+        public const string INDICES = "Indices";
         public const string INDEXAREA_FIN = "FIN_IDX";
         public const string INDEXAREA = "area";
         public const string INDEXUNIQUE = "unique";
@@ -86,7 +89,12 @@ namespace SchemaTool
         #endregion
 
         #region Domain
-        public const string DOMAIN_BOOLEAN = "boolean";
+        public const string DOMAIN_BOOLEAN = "BOOLEAN";
+        public const string DOMAIN_IDENTITYFIELD = "IDENTITYFIELD";
+        public const string DOMAIN_VOUCHERNUMBER = "VOUCHERNUMBER";
+        public const string DOMAIN_SHORTCODE = "SHORTCODE";
+        public const string DOMAIN_DESCRIPTIONSTRING = "DESCRIPTIONSTRING";
+        public const string DOMAIN_EFAS_TC = "EFAS_TC";
         #endregion
 
         #region Format
@@ -102,7 +110,33 @@ namespace SchemaTool
         #endregion
 
         #region Table Relation
-        public const string NEWRELATION = "new relation";
+        public const string NEWRELATION = "New Relation";
+        public const string MULTIPLICITY = "Multiplicity";
+        public const string PRIMARY = "Primary";
+        public const string PARENTMAND = "Parent Mand";
+        public const string DELETECONSTRAINT = "Delete Constraint";
+        public const string ONETON = "1-N";
+        public const string RESTRICTED = "Restricted";
+        #endregion
+
+        #region Columns Caption
+        public const string FORMATDOMAIN = "Format/Domain";
+        public const string FLAGS = "Flags";
+        public const string INITIAL = "Initial";
+        public const string SIDELABEL = "Side-Label";
+        public const string COLLABEL = "Col-Label";
+        public const string COMMENTS = "Comments";
+        public const string NOTES = "Notes";
+        #endregion
+
+        #region Excel Schema 
+        public const string NOTESTEXT = "1. When adding new fields - like Region_ID here - then do list the preceeding and following field so the new field get created in the correct position although in the physical database new fields will always be added at the end of the table";
+        public const string SPECIALFIELDS = "Special fields:";
+        public const string INCLUDECUSTOMFIELDS = "Include Custom-Fields in this table";
+        public const string INCLUDELASTMODIFYFIELDS = "Include LastModified-Fields in this table";
+        public const string INCLUDEQADFIELDS = "Include QAD-Reserved-Fields in this table";
+        public const string YES = "Yes";
+        public const string NO = "No";
         #endregion
 
         public const int MAXTOLERABLENUMINWHILE = 50;

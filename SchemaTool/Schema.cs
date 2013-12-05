@@ -22,6 +22,14 @@ namespace SchemaTool
             CheckSchemaChange();
             OutputResult();
         }
+
+        public bool SchemaHasError()
+        {
+            if (errorList.Count != 0)
+                return true;
+            else
+                return false;
+        }
         #endregion
 
         #region protected method

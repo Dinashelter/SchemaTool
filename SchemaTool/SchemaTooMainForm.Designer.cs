@@ -41,6 +41,10 @@
             this.checkSchemadfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dfSchemaTextBox = new System.Windows.Forms.RichTextBox();
             this.axWebBrowser = new AxSHDocVw.AxWebBrowser();
+            this.convertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertdfToExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +53,9 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.functionToolStripMenuItem});
+            this.functionToolStripMenuItem,
+            this.convertToolStripMenuItem,
+            this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
@@ -125,6 +131,31 @@
             this.axWebBrowser.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser.OcxState")));
             this.axWebBrowser.NavigateComplete2 += new AxSHDocVw.DWebBrowserEvents2_NavigateComplete2EventHandler(this.axWebBrowser_NavigateComplete2);
             // 
+            // convertToolStripMenuItem
+            // 
+            this.convertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.convertdfToExcelToolStripMenuItem});
+            this.convertToolStripMenuItem.Name = "convertToolStripMenuItem";
+            resources.ApplyResources(this.convertToolStripMenuItem, "convertToolStripMenuItem");
+            // 
+            // convertdfToExcelToolStripMenuItem
+            // 
+            this.convertdfToExcelToolStripMenuItem.Name = "convertdfToExcelToolStripMenuItem";
+            resources.ApplyResources(this.convertdfToExcelToolStripMenuItem, "convertdfToExcelToolStripMenuItem");
+            this.convertdfToExcelToolStripMenuItem.Click += new System.EventHandler(this.convertdfToExcelToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            // 
             // SchemaToolMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -156,6 +187,10 @@
         private System.Windows.Forms.ToolStripMenuItem opendfFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem savedfFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsdfFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertdfToExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

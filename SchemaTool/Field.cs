@@ -150,7 +150,7 @@ namespace SchemaTool
 
         public bool CheckLogicalFieldIsManditory()
         {
-            if (_fieldFormat.ToLower() == Constant.DOMAIN_BOOLEAN ||
+            if (_fieldFormat.ToLower() == Constant.DOMAIN_BOOLEAN.ToLower() ||
                 _fieldFormat.ToLower() == Constant.FORMAT_BOOLEAN)
             {
                 if (!_fieldIsMandatory)
@@ -163,7 +163,7 @@ namespace SchemaTool
 
         public bool CheckLogicalFieldHasKeyWordIs()
         {
-            if (_fieldFormat.ToLower() == Constant.DOMAIN_BOOLEAN ||
+            if (_fieldFormat.ToLower() == Constant.DOMAIN_BOOLEAN.ToLower() ||
                 _fieldFormat.ToLower() == Constant.FORMAT_BOOLEAN)
             {
                 if (!_fieldName.ToLower().Contains("is"))

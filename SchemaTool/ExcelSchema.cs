@@ -49,7 +49,7 @@ namespace SchemaTool
             string cellValue = "";
             int whileExecuteCnt = 0;
 
-            while (cellValue.ToLower() != Constant.FIELD && whileExecuteCnt < 50)
+            while (cellValue.ToLower() != Constant.FIELD.ToLower() && whileExecuteCnt < 50)
             {
                 cellValue = ((Range)_tableSheet.Cells[targetRow, Constant.FIELDNAMECOLNUM]).Text.ToString();
                 targetRow++;
@@ -63,7 +63,7 @@ namespace SchemaTool
                 if (cellValue != "")
                 {
                     string fieldName = ((Range)_tableSheet.Cells[targetRow, Constant.FIELDNAMECOLNUM]).Text.ToString();
-                    string fieldFormat = ((Range)_tableSheet.Cells[targetRow, Constant.FIELDFORMATCOLNUM]).Text.ToString();
+                    string fieldFormat = ((Range)_tableSheet.Cells[targetRow, Constant.FIELDFORMATCOLUMN]).Text.ToString();
                     bool fieldIsMandatory = ((Range)_tableSheet.Cells[targetRow, Constant.FIELDMANDITORYCOLNUM]).Text.ToString() == "M" ? true : false;
                     string fieldInitialValue = ((Range)_tableSheet.Cells[targetRow, Constant.FIELDINITIALCOLNUM]).Text.ToString();
                     string fieldLabel = ((Range)_tableSheet.Cells[targetRow, Constant.FIELDLABELCOLNUM]).Text.ToString();
@@ -85,7 +85,7 @@ namespace SchemaTool
             string cellValue = "";
             int whileExecuteCnt = 0;
 
-            while (cellValue.ToLower() != Constant.INDICES && whileExecuteCnt < 50)
+            while (cellValue.ToLower() != Constant.INDICES.ToLower() && whileExecuteCnt < 50)
             {
                 cellValue = ((Range)_tableSheet.Cells[targetRow, 2]).Text.ToString();
                 targetRow++;
@@ -161,7 +161,7 @@ namespace SchemaTool
             {
                 cellValue = ((Range)_tableSheet.Cells[row, 1]).Text.ToString();
                 //new table
-                if (cellValue.ToLower().Contains(Constant.NEWTABLE))
+                if (cellValue.ToLower().Contains(Constant.NEWTABLE.ToLower()))
                 {
                     tableName = cellValue.Split(':')[1].Trim();
                     Table newTable = new Table(tableName, Constant.TABLEACTIVITY_CREATE);
@@ -173,7 +173,7 @@ namespace SchemaTool
                     tableList.Add(newTable);
                 }
                 //modify table
-                else if (cellValue.ToLower().Contains(Constant.MODIFIEDTABLE))
+                else if (cellValue.ToLower().Contains(Constant.MODIFIEDTABLE.ToLower()))
                 {
                     tableName = cellValue.Split(':')[1].Replace(Constant.CHANGESAREINRED,"").Trim();
                     Table modifyTable = new Table(tableName, Constant.TABLEACTIVITY_MODIFY);
@@ -202,7 +202,7 @@ namespace SchemaTool
             {
                 cellValue = ((Range)_tableRelationSheet.Cells[row, 1]).Text.ToString();
                 //new table
-                if (cellValue.ToLower().Contains(Constant.NEWRELATION))
+                if (cellValue.ToLower().Contains(Constant.NEWRELATION.ToLower()))
                 {                   
                     relationName = cellValue.Split(':')[1].Trim();
                     tableRelationList.Add(relationName);

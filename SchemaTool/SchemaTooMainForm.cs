@@ -57,6 +57,7 @@ namespace SchemaTool
             this.checkSchemaExcelToolStripMenuItem.Enabled = true;
             this.dfSchemaTextBox.Visible = false;
             this.checkSchemadfToolStripMenuItem.Enabled = false;
+            this.convertdfToExcelToolStripMenuItem.Enabled = false;
             this.savedfFileToolStripMenuItem.Enabled = false;
             this.saveAsdfFileToolStripMenuItem.Enabled = false;
             //Show excel in a special browse
@@ -122,6 +123,7 @@ namespace SchemaTool
             dfSchema = new DfSchema(this.dfSchemaTextBox.Text.ToString(), openFileDialog.FileName);
 
             this.checkSchemadfToolStripMenuItem.Enabled = true;
+            this.convertdfToExcelToolStripMenuItem.Enabled = true;
         }
 
         private void savedfFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,6 +145,22 @@ namespace SchemaTool
             streamWriter.Close();
         }
 
+        private void convertdfToExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dfSchema.DfSchemaText = this.dfSchemaTextBox.Text;
+            dfSchema.CheckSchema();
+            if (dfSchema.SchemaHasError())
+            {
+                if (MessageBox.Show(Constant.SCHEMAERROR,Constant.QUESTION, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    dfSchema.ConvertToExcel();
+                }
+                else return;
+            }
+            else
+                dfSchema.ConvertToExcel();
+        }       
+
         #endregion
 
         #region Other Method        
@@ -150,6 +168,7 @@ namespace SchemaTool
         {
             this.checkSchemaExcelToolStripMenuItem.Enabled = false;
             this.checkSchemadfToolStripMenuItem.Enabled = false;
+            this.convertdfToExcelToolStripMenuItem.Enabled = false;
         }
 
         private void KillExcel()
@@ -175,6 +194,6 @@ namespace SchemaTool
         }
 
         #endregion
-       
+
     }
 }
